@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Posts;
 
 class PostController extends Controller
 {
@@ -22,7 +23,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    
+    public function store(Request $request)
+    {
+        
+        $validated = $request->validate([
+            'title' => 'required | min:5 | max:500',
+            'url_clean' => 'required'
+        ]);
+
+        Posts::create($validated);
+        //dd($request->title)
+    }
+    
+     public function create()
     {
         //
         
@@ -37,12 +51,10 @@ class PostController extends Controller
      * ALMACENAR EN BASE DE DATOS
      * 
      * /
-    public function store(Request $request)
-    {
-        //
-    }
+    
+    
 
-    /**
+    
      * Display the specified resource.
      *
      * @param  int  $id
