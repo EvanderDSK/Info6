@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 
@@ -24,16 +25,21 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         
-        $validated = $request->validate([
+       /* $validated = $request->validate([
             'title' => 'required | min:5 | max:500',
-            'url_clean' => 'required'
+            'url_clean' => 'required',
+            'content' => 'min:1 | max:500'
         ]);
-
-        Posts::create($validated);
+        */
         //dd($request->title)
+        Posts::create($request->validated());
+
+        return back()->with('status', 'Post created succesfully');
+
+      
     }
     
      public function create()

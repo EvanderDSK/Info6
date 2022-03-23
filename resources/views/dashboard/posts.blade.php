@@ -2,6 +2,8 @@
 
 @section('content')
 @include('fragments.validation-errors')
+@include('fragments.session')
+
 <br>
     <h1>Post</h1>
     <form method="POST" action="{{route('post.store')}}">
