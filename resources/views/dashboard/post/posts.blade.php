@@ -23,7 +23,7 @@
             <td>{{ $post->url_clean }}</td>
             <td>
 
-                <a href="" class="btn btn-secondary">Edit</a>
+                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-secondary">Edit</a>
                 
             </td>
                 

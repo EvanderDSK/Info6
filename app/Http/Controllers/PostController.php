@@ -86,10 +86,15 @@ class PostController extends Controller
      */
 
     //Mostrar información con opción a editar
-    public function edit($id)
+    public function edit(Posts $post)
     {
         //
-        return "Edit:".$id;
+        
+        dd($post);
+        return view('dashboard.post.edit', 
+        ['post' => $post]
+        );
+
     }
 
     /**
