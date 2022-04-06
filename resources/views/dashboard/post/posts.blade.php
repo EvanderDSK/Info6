@@ -28,12 +28,16 @@
             </td>
                 
             <td>
-                <a href="delete" class="btn btn-danger">Delete</a>
+                <form method="POST" action="{{ route('post.destroy', $post->id) }}">
+                  @csrf
+                  @method("DELETE")
+                  <button type="submit" class="btn btn-danger">Delete</a>
             </td>
           </tr>
         @endforeach
     </tbody>
   </table>
 
+  <div class="mt-3"> {{ $posts->links()  }}</div>
 
 @endsection

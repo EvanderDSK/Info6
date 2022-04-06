@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Posts::Get();
+        $posts = Posts::orderby('created_at', 'desc')->paginate(4);
         return view('dashboard.post.posts', [
             'posts' => $posts
         ]);
@@ -49,7 +49,8 @@ class PostController extends Controller
      public function create()
     {
         //
-        return view('dashboard.post.create');
+        return view('dashboard.post.create', 
+            ['post' => new Posts()]);
         
     }
 
@@ -90,7 +91,6 @@ class PostController extends Controller
     {
         //
         
-        dd($post);
         return view('dashboard.post.edit', 
         ['post' => $post]
         );
@@ -106,9 +106,14 @@ class PostController extends Controller
      */
 
     // Actualizar la información
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, Posts $post)
     {
-        //
+        
+        
+        $post->update($request->validated());
+        return back()->with('status', 'Post updated succesfully');
+
+        
     }
 
     /**
