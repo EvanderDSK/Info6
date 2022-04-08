@@ -124,8 +124,9 @@ class PostController extends Controller
      */
 
     //Se lo machetea RECIO
-    public function destroy($id)
+    public function destroy(Posts $post)
     {
-        //
+        $post->delete();
+        return back()->with('status', 'Post Deleted');
     }
 }
