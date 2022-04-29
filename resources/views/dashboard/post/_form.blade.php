@@ -17,5 +17,4 @@
     <br>
     <input type="submit" value="Enviar" class="btn btn-primary">
         
-    <p>xd</p>
         
