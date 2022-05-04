@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('url_clean', 500)->nullable();
             $table->text('content')->nullable();
             $table->enum('posted', ['yes', 'no'])->nullable()->default('no');
-            $table->integer('category_id')->unsigned()->nullable();
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }
