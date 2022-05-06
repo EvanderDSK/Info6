@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,14 @@ Route::get('/', function () {
 
 
 
-Route::resource('/post', PostController::class ) ;
-Route::resource('/category', CategoryController::class);
+
+
+Route::middleware(['admin'])->group(function(){
+
+    Route::resource('/post', PostController::class);
+    Route::resource('/category', CategoryController::class)->middleware('auth');
+
+});
 
 Auth::routes();
 
